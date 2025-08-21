@@ -1,0 +1,20 @@
+{
+  "name": "Freddo’s Coffee Club",
+  "short_name": "Freddo’s",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fcf9f7",
+  "theme_color": "#624b2d",
+  "icons": [
+    {
+      "src": "assets/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

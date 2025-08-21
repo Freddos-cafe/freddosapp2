@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freddo’s - Menú</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- PWA manifest and meta tags -->
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#402218">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script defer src="app.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <!-- Back arrow allows returning to the previous page -->
+            <a href="javascript:history.back()" class="back-arrow">&larr;</a>
+            <img src="assets/logo.png" alt="Freddo’s Logo" class="logo">
+            <nav>
+                <a href="index.html"><i class="fa-solid fa-house"></i><span data-i18n="nav_home">Inicio</span></a>
+                <a href="menu.html"><i class="fa-solid fa-mug-saucer"></i><span data-i18n="nav_menu">Menú</span></a>
+                <a href="coffee_club.html"><i class="fa-solid fa-star"></i><span data-i18n="nav_club">Coffee Club</span></a>
+                <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i><span data-i18n="nav_cart">Carrito</span></a>
+                <a href="profile.html"><i class="fa-solid fa-user"></i><span data-i18n="nav_profile">Perfil</span></a>
+                <select id="languageSelect" aria-label="Cambiar idioma">
+                    <option value="es">ES</option>
+                    <option value="en">EN</option>
+                </select>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <h1 data-i18n="menu_title">Menú</h1>
+        <div id="menuContainer" class="menu-container"></div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Freddo’s Coffee Costa del Sol SL</p>
+    </footer>
+
+    <!-- Service worker registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(err => {
+                    console.error('SW registration failed:', err);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

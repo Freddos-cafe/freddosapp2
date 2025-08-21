@@ -1,0 +1,1041 @@
+/* Freddo’s App Styles */
+
+/* CSS Variables for colour palette */
+/*
+ * Global colour palette and typography definitions
+ *
+ * To align the Freddo’s app with the warm, cosy aesthetic of the
+ * Challenge 3 mock‑up we adopt a subdued coffee‑inspired palette.
+ * The darkest tone anchors the navigation and header elements, while
+ * creamy beiges create inviting surfaces for content. A caramel
+ * accent ties call‑to‑action buttons and progress bars together. The
+ * palette remains WCAG‑conscious, ensuring sufficient contrast between
+ * text and backgrounds across the UI. Font families are defined here
+ * so that a single variable change updates the entire project.
+ */
+:root {
+    /* Deep espresso brown used for headers and primary text */
+    --color-dark: #402218;
+    /* Medium roast brown for secondary surfaces and hover states */
+    --color-medium: #865439;
+    /* Caramel accent for buttons, highlights and progress bars */
+    --color-accent: #d7b28a;
+    /* Light creamy beige for cards and panel backgrounds */
+    --color-light: #f6e8c9;
+    /* Very pale background to create gentle contrast with cards */
+    --color-background: #fbf4e3;
+    /* Primary typeface; remains Libre Baskerville to preserve brand feel */
+    --font-body: 'Libre Baskerville', serif;
+    /* Global border radius to soften corners throughout the UI */
+    --border-radius: 12px;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-dark);
+}
+
+header {
+    /* Dark header bar inspired by Challenge 3; the solid border
+       emphasises separation from the main content while remaining
+       aligned with the palette */
+    background-color: var(--color-dark);
+    border-bottom: 2px solid var(--color-accent);
+    padding: 0.75rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav a {
+    margin-right: 1rem;
+    text-decoration: none;
+    /* Light text on dark header for improved contrast */
+    color: var(--color-light);
+    font-weight: 700;
+    /* Smooth transition for colour and border to enhance UX */
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+nav a.active {
+    /* Active link highlighted with caramel accent */
+    color: var(--color-accent);
+}
+
+nav select {
+    padding: 0.3rem;
+    border: 1px solid var(--color-accent);
+    background-color: var(--color-medium);
+    color: var(--color-light);
+    border-radius: var(--border-radius);
+}
+
+.logo {
+    /* Reduce logo height for mobile devices to prevent shifting the header */
+    height: 30px;
+}
+
+main {
+    max-width: 1200px;
+    margin: 1rem auto;
+    padding: 0 1rem;
+}
+
+footer {
+    padding: 1rem;
+    text-align: center;
+    background-color: var(--color-light);
+    border-top: 1px solid var(--color-accent);
+    margin-top: 2rem;
+}
+
+.hero {
+    text-align: center;
+    padding: 4rem 1rem;
+    /* Rich dark background for hero, reminiscent of a freshly brewed
+       espresso. Removed gradient for a cleaner look. */
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    border-radius: var(--border-radius);
+}
+.hero h1 {
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+    color: var(--color-light);
+}
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--color-accent);
+}
+.btn-primary,
+.btn-secondary {
+    display: inline-block;
+    padding: 0.8rem 1.4rem;
+    /* Rounded pill‑shaped buttons echo the soft geometry of Challenge 3 */
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+.btn-primary {
+    background-color: var(--color-accent);
+    color: var(--color-dark);
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/*
+ * Hover states for buttons. We darken the accent slightly and invert
+ * text colours to ensure they remain legible. A subtle shadow adds
+ * depth on interaction.
+ */
+.btn-primary:hover {
+    background-color: var(--color-medium);
+    color: var(--color-light);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+.btn-secondary:hover {
+    background-color: var(--color-medium);
+    color: var(--color-light);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+.btn-secondary {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.categories {
+    margin-top: 3rem;
+}
+.categories h2 {
+    margin-bottom: 1rem;
+}
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+.category-card {
+    position: relative;
+    height: 150px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background-color: var(--color-medium);
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+    color: var(--color-light);
+    font-weight: 700;
+    text-decoration: none;
+    background-size: cover;
+    background-position: center;
+    /* Add subtle elevation and smooth hover */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.category-card span {
+    z-index: 2;
+}
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Transparent dark overlay tailored to the new palette */
+    background-color: rgba(64,34,24,0.35);
+    opacity: 0.6;
+}
+
+/* Category card hover: raise slightly and increase shadow */
+.category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+/* Menu page styles */
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.category-section {
+    background-color: var(--color-light);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.category-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+.category-section h2 {
+    margin-top: 0;
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 0.5rem;
+}
+.item-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-background);
+}
+.item .item-name {
+    /* The name takes up all remaining space so long names wrap but
+       prices and buttons stay aligned. */
+    flex: 1 1 auto;
+    min-width: 0;
+}
+.item .item-price {
+    /* Price column: fixed width to ensure all prices line up in a neat
+       column. The styles mirror the tag-like appearance with a border
+       and background. */
+    flex: 0 0 92px;
+    display: inline-block;
+    background-color: var(--color-background);
+    border: 2px solid var(--color-accent);
+    border-radius: var(--border-radius);
+    padding: 0.4rem 0.6rem;
+    margin: 0 0.5rem;
+    font-weight: 700;
+    text-align: center;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.item .btn-view {
+    /* Button column: fixed width matching the price for alignment. */
+    flex: 0 0 92px;
+    background-color: var(--color-accent);
+    border: none;
+    border-radius: 999px;
+    padding: 0.5rem 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--color-dark);
+    text-align: center;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.item .btn-view:hover {
+    background-color: var(--color-medium);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    color: var(--color-light);
+}
+.item:last-child {
+    border-bottom: none;
+}
+.item button {
+    background-color: var(--color-accent);
+    border: none;
+    border-radius: 4px;
+    padding: 0.4rem 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--color-dark);
+}
+
+/* Product page styles */
+.product-details {
+    background-color: var(--color-light);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+}
+.product-details h2 {
+    margin-top: 0;
+}
+.extras-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.extras-list li {
+    margin-bottom: 0.5rem;
+}
+
+/* Cart page styles */
+.cart-container {
+    background-color: var(--color-light);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.cart-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-background);
+}
+.cart-item:last-child {
+    border-bottom: none;
+}
+.cart-summary {
+    margin-top: 1rem;
+    background-color: var(--color-light);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+}
+.cart-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Checkout page styles */
+.checkout-summary {
+    background-color: var(--color-light);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.checkout-summary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    background-color: var(--color-light);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.checkout-form:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+.checkout-form input {
+    padding: 0.6rem;
+    border: 1px solid var(--color-accent);
+    border-radius: var(--border-radius);
+    background-color: var(--color-background);
+    color: var(--color-dark);
+}
+
+/* Confirmation page styles */
+.confirmation-details {
+    background-color: var(--color-light);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.confirmation-details:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+/* Coffee Club page styles */
+.club-content {
+    background-color: var(--color-light);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+}
+.club-status {
+    margin-bottom: 1rem;
+}
+.progress-container {
+    position: relative;
+    height: 16px;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-accent);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+.progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: var(--color-accent);
+}
+.club-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1rem;
+}
+.club-benefits li {
+    margin-bottom: 0.5rem;
+}
+
+/* --------------------------------------------------------------------- */
+/* New UI enhancements for Freddo’s Coffee Club and navigation             */
+/*                                                                        */
+/* Back arrow styling: provides a clear tap target to return to the       */
+/* previous page on secondary screens. The colour transitions on hover    */
+/* help indicate interactivity without overwhelming the design.           */
+.back-arrow {
+    font-size: 1.6rem;
+    margin-right: 0.5rem;
+    /* Caramel tone on dark header improves legibility */
+    color: var(--color-accent);
+    text-decoration: none;
+    align-self: center;
+}
+.back-arrow:hover {
+    color: var(--color-light);
+}
+
+/* Coffee Club hero image: occupies full width of its container with a    */
+/* subtle border radius. A margin below separates it from the content.    */
+.club-hero {
+    margin-bottom: 1rem;
+}
+.club-hero img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    display: block;
+}
+
+/* Hero overlay for the Coffee Club: sits on top of the hero image and
+   displays the call‑to‑action to join the club. It uses a dark semi
+   transparent background and centres its content. */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none; /* Initially hidden; shown via JS when needed */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.55);
+    border-radius: 8px;
+    text-align: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    z-index: 1;
+}
+.hero-overlay .overlay-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+}
+.hero-overlay .join-image {
+    width: 70%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+    margin: 0.5rem 0;
+}
+.hero-overlay .join-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-top: 0.5rem;
+}
+.hero-overlay .join-button {
+    background-color: var(--color-accent);
+    color: var(--color-dark);
+    padding: 0.8rem 1.2rem;
+    margin-top: 0.8rem;
+    border: none;
+    border-radius: 999px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.hero-overlay .join-button:hover {
+    background-color: var(--color-medium);
+    color: var(--color-light);
+}
+
+/* Ensure the hero container is positioned relative so the overlay
+   positions correctly within it */
+.club-hero {
+    position: relative;
+}
+
+/* Navigation enhancements: highlight the active page with a border
+   under the link and an accent colour. Provide a subtle underline on
+   hover for better affordance. */
+nav a.active {
+    color: var(--color-accent);
+    border-bottom: 2px solid var(--color-accent);
+}
+nav a:hover {
+    text-decoration: underline;
+    /* Subtle colour change on hover to indicate interactivity */
+    color: var(--color-accent);
+}
+
+/* Payment options: style containers and buttons for Apple Pay and
+   Google Pay. They are flex items to occupy equal space within their
+   parent. */
+.payment-options {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+.btn-apple-pay,
+.btn-google-pay {
+    flex: 1 1 auto;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+}
+.btn-apple-pay {
+    background-color: #000;
+    color: #fff;
+}
+.btn-google-pay {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid var(--color-dark);
+}
+
+/* Achievements list styling: display icons and text neatly aligned */
+.achievements-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+.achievements-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+.achievement-icon {
+    font-size: 1.3rem;
+}
+
+/* Locked achievements appear dimmed to encourage users to unlock them */
+.achievement-locked .achievement-icon,
+.achievement-locked .achievement-text {
+    opacity: 0.4;
+}
+
+.achievement-unlocked .achievement-icon,
+.achievement-unlocked .achievement-text {
+    opacity: 1;
+}
+
+/* --------------------------------------------------------------------- */
+/* Challenges section styling: mirrors the achievements list but includes   */
+/* progress bars to show how close the user is to completing each Fika     */
+/* challenge. Icons provide visual cues for each challenge type.           */
+.challenges-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+.challenges-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+.challenge-icon {
+    font-size: 1.3rem;
+}
+/* Locked challenges appear dimmed; unlocked challenges use full opacity */
+.challenge-locked .challenge-icon,
+.challenge-locked .challenge-text,
+.challenge-locked .challenge-progress-container {
+    opacity: 0.4;
+}
+.challenge-unlocked .challenge-icon,
+.challenge-unlocked .challenge-text,
+.challenge-unlocked .challenge-progress-container {
+    opacity: 1;
+}
+.challenge-progress-container {
+    flex: 1 1 auto;
+    height: 8px;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-accent);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    margin-left: 0.5rem;
+    position: relative;
+}
+.challenge-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: var(--color-accent);
+    /* subtle shimmer effect for challenge progress bars */
+    overflow: hidden;
+}
+.challenge-progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    animation: progress-shimmer 2s linear infinite;
+    transform: translateX(-100%);
+}
+
+/* --------------------------------------------------------------------- */
+/* Coffee Club progress redesign                                          */
+/*
+ * The following classes implement the circular progress indicator and
+ * milestone progress bars requested for the Coffee Club section.  They
+ * borrow from the global palette and border radius variables defined at
+ * the top of this stylesheet.  The ring uses a conic gradient that
+ * reads the custom property --progress (0–1) set via inline style.
+ */
+.club-level-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 1rem 0 0.25rem;
+    text-align: center;
+    color: var(--color-dark);
+}
+
+.club-progress-circle {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    /* Use the conic gradient to paint the progress ring.  The remainder
+       of the circle is filled with the light card colour. */
+    background: conic-gradient(var(--color-accent) calc(var(--progress) * 360deg), var(--color-light) 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem auto;
+    color: var(--color-dark);
+    font-size: 2rem;
+    font-weight: 700;
+}
+.club-progress-circle::before {
+    content: '';
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    background-color: var(--color-light);
+    border-radius: 50%;
+}
+.club-progress-circle .circle-value {
+    position: relative;
+    z-index: 1;
+    color: var(--color-dark);
+}
+
+.club-progress-remaining {
+    text-align: center;
+    margin-top: 0.25rem;
+    color: var(--color-medium);
+    font-weight: 600;
+}
+
+/*
+ * Coffee Club Card Layout
+ *
+ * To emulate the high‑contrast card seen in the reference image, the
+ * coffee club progress area is wrapped inside a card component.  The
+ * header of the card uses the darkest colour to anchor the level
+ * indicator and circular progress ring, while the body uses a light
+ * background for tasks, unlockables and benefits.  Rounded corners
+ * unify the two sections into a single element.
+ */
+.club-card {
+    background-color: var(--color-light);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    margin-top: 1rem;
+}
+
+.club-card-header {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    text-align: center;
+    padding: 1rem 0.5rem;
+}
+
+.club-card-header .club-level-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-light);
+}
+
+/* Adjust the progress circle colours when displayed on the dark header.
+   The empty portion uses the medium tone instead of the light tone so
+   that the ring remains visible against the dark background. */
+.club-card-header .club-progress-circle {
+    margin: 0.5rem auto;
+    color: var(--color-light);
+    background: conic-gradient(var(--color-accent) calc(var(--progress) * 360deg), var(--color-medium) 0);
+}
+.club-card-header .club-progress-circle::before {
+    background-color: var(--color-dark);
+}
+.club-card-header .club-progress-circle .circle-value {
+    color: var(--color-light);
+}
+.club-card-header .club-progress-remaining {
+    margin-top: 0.3rem;
+    color: var(--color-accent);
+    font-weight: 600;
+}
+
+.club-card-body {
+    background-color: var(--color-light);
+    padding: 1rem;
+    color: var(--color-dark);
+}
+
+/* Unlockables list within the card body */
+.club-unlockables {
+    margin: 0.8rem 0;
+}
+.unlockable-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.6rem;
+    gap: 0.6rem;
+}
+.unlockable-image {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.unlockable-text {
+    flex: 1;
+}
+.unlockable-title {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-dark);
+}
+.unlockable-desc {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--color-medium);
+}
+.unlockable-locked {
+    opacity: 0.4;
+}
+.unlockable-unlocked {
+    opacity: 1;
+}
+
+.club-tasks {
+    margin-top: 0.5rem;
+}
+.club-task {
+    margin-bottom: 0.6rem;
+}
+.club-task .task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.3rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    font-size: 1rem;
+}
+.club-task .task-progress-container {
+    position: relative;
+    height: 6px;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-accent);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+.club-task .task-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: var(--color-accent);
+}
+
+/* Image-based icons for challenges (Fika) */
+.challenge-image {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Unlockables section styling */
+.unlockables-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+.unlockables-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+.unlockable-image {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+.unlockable-locked .unlockable-image,
+.unlockable-locked .unlockable-text {
+    opacity: 0.4;
+}
+.unlockable-unlocked .unlockable-image,
+.unlockable-unlocked .unlockable-text {
+    opacity: 1;
+}
+.unlockable-text {
+    flex: 1;
+}
+
+/* Navigation buttons styled as cozy pills. Icons in nav items have margin */
+nav a {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.8rem;
+    border-radius: 8px;
+    margin-right: 0.5rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+nav a i {
+    margin-right: 0.3rem;
+}
+nav a.active {
+    background-color: var(--color-accent);
+    color: var(--color-light);
+}
+nav a:hover {
+    background-color: var(--color-accent);
+    color: var(--color-light);
+}
+
+/* Join section: a call‑to‑action encouraging users to become members.    */
+/* It uses a soft border and rounded corners, and pulses gently to draw   */
+/* attention. On hover, the card grows slightly and gains a shadow.       */
+.club-join {
+    /* Redesigned to be more eye‑catching: stacked layout with dark background, */
+    /* golden border and a pulsing effect that invites users to join.          */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-dark);
+    border: 2px solid var(--color-accent);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: pulse-btn 2.5s infinite;
+}
+.club-join:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.join-text {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-align: center;
+}
+.join-image {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin-top: 0.5rem;
+    border-radius: 8px;
+}
+@keyframes pulse-btn {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* Progress bar shimmer: overlay a moving gradient across the progress    */
+/* bar to give a sense of motion and progress. The animation is subtle    */
+/* so as not to distract from the content.                                */
+.progress-container {
+    position: relative;
+    height: 16px;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-accent);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+.progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: var(--color-accent);
+    overflow: hidden;
+}
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    animation: progress-shimmer 2s linear infinite;
+    transform: translateX(-100%);
+}
+@keyframes progress-shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Footer image styling: centres an image in the footer and constrains its */
+/* width on smaller screens.                                              */
+.footer-image img {
+    max-width: 300px;
+    width: 80%;
+    height: auto;
+    margin: 1rem auto;
+    display: block;
+}
+
+/* Cancel subscription button spacing */
+.cancel-subscription {
+    margin-bottom: 1rem;
+}
+
+/* Centre align club content and refine benefit list appearance */
+.club-content {
+    text-align: center;
+}
+.club-benefits li {
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed var(--color-background);
+}
+.club-benefits li:last-child {
+    border-bottom: none;
+}
+
+/* Profile page styles */
+.profile-content {
+    background-color: var(--color-light);
+    padding: 1rem;
+    border-radius: 8px;
+}
+.profile-content ul {
+    list-style: none;
+    padding: 0;
+}
+.profile-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    nav a {
+        margin-right: 0.5rem;
+    }
+    .category-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    /* On very narrow screens, shrink the fixed columns for price and button so
+       everything still fits. */
+    .item .item-price {
+        flex-basis: 86px;
+    }
+    .item .btn-view {
+        flex-basis: 86px;
+    }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freddo’s - Inicio</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- PWA manifest and meta tags -->
+    <link rel="manifest" href="manifest.webmanifest">
+    <!-- Updated theme‑colour to reflect the deeper coffee tones of the new design -->
+    <meta name="theme-color" content="#402218">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Google Fonts: Libre Baskerville -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script defer src="app.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="assets/logo.png" alt="Freddo’s Logo" class="logo">
+            <nav>
+                <a href="index.html"><i class="fa-solid fa-house"></i><span data-i18n="nav_home">Inicio</span></a>
+                <a href="menu.html"><i class="fa-solid fa-mug-saucer"></i><span data-i18n="nav_menu">Menú</span></a>
+                <a href="coffee_club.html" class="club-link"><i class="fa-solid fa-star"></i><span data-i18n="nav_club">Coffee Club</span></a>
+                <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i><span data-i18n="nav_cart">Carrito</span></a>
+                <a href="profile.html"><i class="fa-solid fa-user"></i><span data-i18n="nav_profile">Perfil</span></a>
+                <select id="languageSelect" aria-label="Cambiar idioma">
+                    <option value="es">ES</option>
+                    <option value="en">EN</option>
+                </select>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <h1 data-i18n="hero_welcome">Bienvenido a Freddo’s</h1>
+            <p data-i18n="hero_intro">Disfruta de nuestros cafés, frappés y snacks. Selecciona una categoría para empezar tu pedido.</p>
+            <a href="menu.html" class="btn-primary" data-i18n="button_start_order">Pedir ahora</a>
+        </section>
+        <section class="categories">
+            <h2 data-i18n="categories_title">Categorías</h2>
+            <div class="category-grid">
+                <a class="category-card" href="menu.html#freddos" style="background-image: url('assets/category-freddos.png');">
+                    <span data-i18n="category_freddos">Freddos Frío/Ice Coffee</span>
+                </a>
+                <a class="category-card" href="menu.html#cafes" style="background-image: url('assets/category-cafes.png');">
+                    <span data-i18n="category_cafes">Cafés calientes</span>
+                </a>
+                <a class="category-card" href="menu.html#frappes" style="background-image: url('assets/category-frappes.png');">
+                    <span data-i18n="category_frappes">Frappés & Sirope</span>
+                </a>
+                <a class="category-card" href="menu.html#bebidas" style="background-image: url('assets/category-bebidas.png');">
+                    <span data-i18n="category_bebidas">Bebidas</span>
+                </a>
+                <a class="category-card" href="menu.html#snacks" style="background-image: url('assets/category-snacks.png');">
+                    <span data-i18n="category_snacks">Snacks</span>
+                </a>
+                <a class="category-card" href="menu.html#extras" style="background-image: url('assets/category-extras.png');">
+                    <span data-i18n="category_extras">Extras</span>
+                </a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Freddo’s Coffee Costa del Sol SL</p>
+        <!-- Image promoting the Coffee Club at the bottom of the home page -->
+        <div class="footer-image">
+            <img src="assets/club_original.png" alt="Freddo’s Coffee Club">
+        </div>
+    </footer>
+
+    <!-- Service worker registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(err => {
+                    console.error('SW registration failed:', err);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
